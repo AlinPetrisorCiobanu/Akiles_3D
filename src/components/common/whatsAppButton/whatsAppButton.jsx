@@ -1,5 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa";
-import "./WhatsAppButton.css";
+import "./whatsAppButton.css";
 
 function WhatsAppButton() {
   const phone = "34651758263";
