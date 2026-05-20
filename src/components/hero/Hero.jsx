@@ -1,6 +1,8 @@
 import "./Hero.css";
+import HeroCharacter from "./HeroCharacter";
 
 import backgroundImage from "../../assets/backgrounds/background-akiles-3d.png";
+
 
 function Hero() {
   return (
@@ -13,32 +15,40 @@ function Hero() {
 
       <div className="hero-overlay" />
 
-      <div className="hero-content">
-        <span className="hero-badge">
-          Impresión 3D Profesional
-        </span>
+      <div className="hero-container">
+        <div className="hero-content">
+          <span className="hero-badge">
+            Impresión 3D Profesional
+          </span>
 
-        <h1>
-          FIGURAS 3D
-          <br />
-          DE OTRO NIVEL
-        </h1>
+          <h1>
+            FIGURAS 3D
+            <br />
+            DE OTRO NIVEL
+          </h1>
 
-        <p>
-          Diseños exclusivos impresos en 3D con acabados
-          premium para coleccionistas, decoración y
-          proyectos totalmente personalizados.
-        </p>
+          <p>
+            Diseños exclusivos impresos en 3D con
+            acabados premium para coleccionistas,
+            decoración y proyectos totalmente
+            personalizados.
+          </p>
 
-        <div className="hero-buttons">
-          <button className="btn-primary">
-            Ver catálogo
-          </button>
+          <div className="hero-buttons">
+            <button className="btn-primary">
+              Ver catálogo
+            </button>
 
-          <button className="btn-secondary">
-            Encargar diseño
-          </button>
+            <button className="btn-secondary">
+              Encargar diseño
+            </button>
+          </div>
         </div>
+
+        <div className="hero-model">
+          <HeroCharacter />
+        </div>
+        
       </div>
     </section>
   );

@@ -28,7 +28,7 @@
   z-index: -3;
 }
 
-/* ---------- DARK OVERLAY ---------- */
+/* ---------- OVERLAY ---------- */
 
 .hero-overlay {
   position: absolute;
@@ -36,13 +36,13 @@
 
   background: linear-gradient(
     rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.85)
   );
 
   z-index: -2;
 }
 
-/* ---------- BLUE GLOW ---------- */
+/* ---------- GLOBAL GLOW ---------- */
 
 .hero::after {
   content: "";
@@ -59,10 +59,28 @@
   z-index: -1;
 }
 
+/* ---------- LAYOUT ---------- */
+
+.hero-container {
+  width: 100%;
+  max-width: 1600px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 4rem;
+}
+
 /* ---------- CONTENT ---------- */
 
 .hero-content {
+  flex: 1;
   max-width: 700px;
+
+  z-index: 2;
 }
 
 .hero-badge {
@@ -77,6 +95,8 @@
 
   background: rgba(0, 191, 255, 0.08);
 
+  backdrop-filter: blur(12px);
+
   color: var(--electric-blue);
 
   font-size: 0.9rem;
@@ -90,6 +110,10 @@
   letter-spacing: -2px;
 
   margin-bottom: 1.5rem;
+
+  text-shadow:
+    0 0 15px rgba(0, 191, 255, 0.2),
+    0 0 30px rgba(0, 191, 255, 0.1);
 }
 
 .hero p {
@@ -101,6 +125,236 @@
   line-height: 1.8;
 
   margin-bottom: 2.5rem;
+}
+
+/* ---------- CHARACTER AREA ---------- */
+
+.hero-model {
+  flex: 1;
+
+  min-height: 700px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+/* ---------- CHARACTER WRAPPER ---------- */
+
+.character-wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  perspective: 1600px;
+
+  cursor: pointer;
+}
+
+/* ---------- FLOATING CONTAINER ---------- */
+
+.character-float {
+  animation: floatCharacter 5s ease-in-out infinite;
+
+  transform-style: preserve-3d;
+}
+
+/* ---------- CHARACTER IMAGE ---------- */
+
+.hero-character {
+  width: min(580px, 95%);
+
+  display: block;
+
+  user-select: none;
+  pointer-events: none;
+
+  will-change: transform;
+
+  transition:
+    transform 0.18s cubic-bezier(.22,.61,.36,1),
+    filter 0.3s ease;
+
+  filter:
+    drop-shadow(0 40px 70px rgba(0,0,0,.55))
+    drop-shadow(0 0 25px rgba(0,191,255,.35));
+
+  animation: glowCharacter 3s ease-in-out infinite;
+}
+
+/* ---------- HALO ---------- */
+
+.character-wrapper::before {
+  content: "";
+
+  position: absolute;
+
+  width: 520px;
+  height: 520px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,191,255,.45),
+      rgba(0,191,255,.15) 40%,
+      transparent 75%
+    );
+
+  filter: blur(80px);
+
+  animation: pulseHalo 4s ease-in-out infinite;
+
+  z-index: -2;
+}
+
+/* ---------- SHADOW ---------- */
+
+.character-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -45px;
+
+  width: 320px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  background: rgba(0,0,0,.55);
+
+  filter: blur(30px);
+
+  animation: shadowPulse 5s ease-in-out infinite;
+
+  z-index: -1;
+}
+
+/* ---------- HOLOGRAPHIC SHINE ---------- */
+
+.character-shine {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.character-shine::before {
+  content: "";
+
+  position: absolute;
+
+  top: -20%;
+  left: -120%;
+
+  width: 35%;
+  height: 140%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  transform: skewX(-25deg);
+
+  animation: shine 5s linear infinite;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes floatCharacter {
+  0% {
+    transform:
+      translateY(0px)
+      rotate(-2deg);
+  }
+
+  50% {
+    transform:
+      translateY(-20px)
+      rotate(2deg);
+  }
+
+  100% {
+    transform:
+      translateY(0px)
+      rotate(-2deg);
+  }
+}
+
+@keyframes glowCharacter {
+  0% {
+    filter:
+      drop-shadow(0 40px 70px rgba(0,0,0,.55))
+      drop-shadow(0 0 20px rgba(0,191,255,.25));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 40px 70px rgba(0,0,0,.55))
+      drop-shadow(0 0 70px rgba(0,191,255,.75));
+  }
+
+  100% {
+    filter:
+      drop-shadow(0 40px 70px rgba(0,0,0,.55))
+      drop-shadow(0 0 20px rgba(0,191,255,.25));
+  }
+}
+
+@keyframes pulseHalo {
+  0% {
+    transform: scale(1);
+    opacity: .5;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: .5;
+  }
+}
+
+@keyframes shadowPulse {
+  0% {
+    transform: scale(1);
+    opacity: .35;
+  }
+
+  50% {
+    transform: scale(.85);
+    opacity: .18;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: .35;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 220%;
+  }
 }
 
 /* ---------- BUTTONS ---------- */
@@ -119,7 +373,9 @@
   font-size: 1rem;
   font-weight: 600;
 
-  transition: all 0.3s ease;
+  cursor: pointer;
+
+  transition: all .3s ease;
 }
 
 .btn-primary {
@@ -144,18 +400,37 @@
   background: rgba(0, 191, 255, 0.08);
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ---------- TABLET ---------- */
 
 @media (max-width: 992px) {
   .hero {
     padding: 6rem 4rem;
   }
+
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-model {
+    min-height: 450px;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
 }
+
+/* ---------- MOBILE ---------- */
 
 @media (max-width: 768px) {
   .hero {
     padding: 7rem 2rem 4rem;
-    text-align: center;
   }
 
   .hero-content {
@@ -167,11 +442,25 @@
   }
 
   .hero p {
-    margin-left: auto;
-    margin-right: auto;
-
     font-size: 1rem;
     line-height: 1.6;
+  }
+
+  .hero-model {
+    min-height: 320px;
+  }
+
+  .hero-character {
+    width: min(320px, 90vw);
+  }
+
+  .character-wrapper::before {
+    width: 280px;
+    height: 280px;
+  }
+
+  .character-wrapper::after {
+    width: 180px;
   }
 
   .hero-buttons {
@@ -184,11 +473,12 @@
   }
 }
 
-/* Pantallas con poca altura (móviles horizontales, etc.) */
+/* ---------- LOW HEIGHT ---------- */
 
 @media (max-height: 700px) {
   .hero {
     align-items: flex-start;
+
     padding-top: 8rem;
     padding-bottom: 3rem;
   }
