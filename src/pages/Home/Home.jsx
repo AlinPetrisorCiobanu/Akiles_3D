@@ -1,4 +1,4 @@
-import Navbar from "../../components/layout/Navbar/NavBar";
+import Navbar from "../../components/layout/Navbar/Navbar";
 import Hero from "../../components/hero/Hero";
 
 function Home() {
