@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../../assets/img/banner-akiles-3d-png.png";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => {
@@ -21,15 +24,26 @@ function Navbar() {
 
         {/* LOGO */}
         <div className="navbar-logo">
-          <img src={logo} alt="AKILES 3D" />
+          <img src={logo} alt="AKILES 3D" onClick={()=>navigate("/")} />
         </div>
 
         {/* DESKTOP MENU */}
         <ul className="navbar-links desktop">
-          <li className="active">Inicio</li>
-          <li>Catálogo</li>
-          <li>Personalizados</li>
-          <li>Contacto</li>
+          <li>
+            <NavLink to="/">Inicio</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/catalogo">Catálogo</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/productos">Productos</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/contacto">Contacto</NavLink>
+          </li>
         </ul>
 
         {/* ACTIONS */}
@@ -58,10 +72,29 @@ function Navbar() {
         </button>
 
         <ul>
-          <li>Inicio</li>
-          <li>Catálogo</li>
-          <li>Personalizados</li>
-          <li>Contacto</li>
+          <li>
+            <NavLink to="/" onClick={() => setOpen(false)}>
+              Inicio
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/catalogo" onClick={() => setOpen(false)}>
+              Catálogo
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/personalizados" onClick={() => setOpen(false)}>
+              Personalizados
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/contacto" onClick={() => setOpen(false)}>
+              Contacto
+            </NavLink>
+          </li>
         </ul>
       </aside>
     </>

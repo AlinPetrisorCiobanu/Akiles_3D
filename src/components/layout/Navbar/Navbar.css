@@ -82,7 +82,7 @@
   width: 100%;
 }
 
-.navbar-links li.active {
+.navbar-links .active {
   color: #00bfff;
 }
 
@@ -142,9 +142,9 @@
 .mobile-menu {
   position: fixed;
   top: 0;
-  right: -320px;
+  right: -220px;
 
-  width: 320px;
+  width: 220px;
   height: 100vh;
 
   background: #161b22;
